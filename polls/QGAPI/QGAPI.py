@@ -4,13 +4,15 @@ from rest_framework.parsers import JSONParser
 import requests
 import json
 
-class qgapi():
-    def questionGenerate(request, bkd_id):
+class QGApi():
+    
+    _URL = 'http://117.16.136.170/restful/qg'
+   
+    
+    def question_generation(request, bkd_id):
         bkd = BKD.objects.get(id = bkd_id)
-        
-        URL = 'http://117.16.136.170/restful/qg'
         data = {'bkd' : bkd.body}
-        res = requests.post(URL, data=data)
+        res = requests.post(QGApi._URL, data=data)
         content = res.text
         print(res)
         print(content)
